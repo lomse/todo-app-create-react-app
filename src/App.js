@@ -5,17 +5,15 @@ import { TodoForm, TodoList } from './components/todo';
 import { addTodo, generateId } from './lib/todoHelpers';
 
 class App extends Component {
-  constructor() { 
-    super()
-    this.state = {
-      currentTodo: "",
-      errorMessage: "",
-      todos: [
-        { id: 1, name: 'Learn JSX', isComplete: false },
-        { id: 2, name: 'Build an Awesome App', isComplete: false },
-        { id: 3, name: 'Ship it!', isComplete: true }
-      ]
-    }
+
+  state = {
+    currentTodo: "",
+    errorMessage: "",
+    todos: [
+      { id: 1, name: 'Learn JSX', isComplete: false },
+      { id: 2, name: 'Build an Awesome App', isComplete: false },
+      { id: 3, name: 'Ship it!', isComplete: true }
+    ]
   }
 
   handleOnchangeCheckbox = (event) => { 
