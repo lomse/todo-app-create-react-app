@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { TodoForm, TodoList } from './components/todo';
-import { addTodo, generateId } from './lib/todoHelpers';
+import { addTodo, generateId, findById, toggleTodo, updateTodo } from './lib/todoHelpers';
 
 class App extends Component {
 
@@ -16,18 +16,17 @@ class App extends Component {
     ]
   }
 
-  handleOnchangeCheckbox = (event) => { 
-    let todos = this.state.todos
+  handleToggle = (todoId) => { 
+    //Find todo by id
+    const todo = findById(todoId, this.state.todos)
 
-    todos.forEach(todo => {
-      if (todo.id === parseInt(event.target.id, 2)) {
-        todo.isComplete = true
-      } else { 
-        todo.isComplete = false
-      }
-    });
+    //Toggle todo
+    const toggledTodo = toggleTodo(todo)
 
-    this.setState({todos: todos})
+    //Update todo
+    const updatedTodos = updateTodo(this.state.todos, toggledTodo)
+
+    this.setState({todos: updatedTodos})
   }
 
   handleOnchangeInput= (event)=> {
@@ -70,6 +69,7 @@ class App extends Component {
           
           <TodoList
             todos={this.state.todos}
+            handleToggle={ this.handleToggle }
             handleOnchangeCheckbox={this.handleOnchangeCheckbox} />
         </div>
       </div>
