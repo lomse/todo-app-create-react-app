@@ -8,6 +8,7 @@ export const TodoList = props => {
             {props.todos.map(todo =>
                 <TodoItem key={todo.id}
                     { ...todo}
+                    handleToggle={ props.handleToggle }
                     handleOnchangeCheckbox={props.handleOnchangeCheckbox} />)}
           </ul>
     )
