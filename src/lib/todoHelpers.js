@@ -1,18 +1,47 @@
 /**
- * the addTodo function helper
- * @param {*} list 
- * @param {*} item 
+ * addTodo
+ * 
+ * @param {any} list 
+ * @param {any} item 
  */
 export const addTodo = (list, item) => [item, ...list]
 
 /**
- * Generate random id
+ * generateId
+ * 
  */
 export const generateId = () => Math.floor(Math.random() * 100000)
 
 /**
- * find by id
- * @param {*} id 
- * @param {*} item 
+ * findById
+ * 
+ * @param {any} id 
+ * @param {any} list 
  */
 export const findById = (id, list) => list.find(item => item.id === id)
+
+
+/**
+ * toggleTodo
+ * 
+ * @param {any} todo 
+ */
+export const toggleTodo = (todo) => ({ ...todo, isComplete: !todo.isComplete })
+
+/**
+ * updateTodo
+ * 
+ * @param {any} list 
+ * @param {any} updatedItem 
+ * @returns 
+ */
+export const updateTodo = (list, updatedItem) => { 
+    const updatedIndex = list.findIndex(item => item.id === updatedItem.id)
+
+    return [
+        ...list.slice(0, updatedIndex),
+        updatedItem,
+        ...list.slice(updatedIndex+1)
+    ]
+}
+
