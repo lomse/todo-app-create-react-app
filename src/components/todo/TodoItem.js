@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { partial } from '../../lib/utils';
 
 export const TodoItem = props => { 
+    const hangleToggle = partial(props.handleToggle, props.id)
+
     return (
         <li>
             <label htmlFor={props.id}>
                 <input type="checkbox" id={props.id}
-                defaultChecked={props.isComplete}
-                onChange={props.handleOnchangeCheckbox}
+                    checked={props.isComplete}
+                    onChange={ hangleToggle }    
                 /> {props.name}</label>
             </li>
     )
