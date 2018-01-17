@@ -25,6 +25,13 @@ ul.todoList li {
   list-style: none !important;
   padding: 5px 0
 }
+ul.todoList li a {
+  font-size: 20px;
+  margin-left: 10px;
+  color: crimson;
+  text-decoration: none !important;
+  float: right
+}
 ul.todoList {
   text-align: left !important;
   padding: 0
