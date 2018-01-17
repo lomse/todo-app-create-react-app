@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export const TodoForm = props => { 
     return(
         <form onSubmit={props.handleSubmit}>
-            <input type="text" value={props.currentTodo} onChange={props.handleOnchangeInput} />
+            <input focus type="text" value={props.currentTodo} onChange={props.handleOnchangeInput} />
           </form>
     )
 }
