@@ -1,18 +1,16 @@
-import { partial } from './utils';
+import { pipe } from './utils';
 
-const add = (a, b) => a + b
-const addThree = (a, b, c) => a + b + c
+const inc = (num) => num + 1
+const dbl = (num) => num * 2
 
-test('partial applies the first argument ahead of time', () => {
-    const inc = partial(add, 1)
-    const result = inc(2)
-
-    expect(result).toBe(3)
+test('pipe passes the value of inc to dbl', () => { 
+    const pipeline = pipe(inc, dbl)
+    const result = pipeline(5)
+    expect(result).toBe(12)
 })
 
-test('', () => { 
-    const inc = partial(addThree, 1, 3)
-    const result = inc(2)
-
-    expect(result).toBe(6)
+test('pipe passes the value of inc to dbl and back to inc', () => { 
+    const pipeline = pipe(inc, dbl, inc)
+    const result = pipeline(4)
+    expect(result).toBe(11)
 })
