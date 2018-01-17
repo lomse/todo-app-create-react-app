@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { TodoForm, TodoList } from './components/todo';
-import { addTodo, generateId, findById, toggleTodo, updateTodo } from './lib/todoHelpers';
+import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo } from './lib/todoHelpers';
 import { pipe, partial } from './lib/utils';
 
 class App extends Component {
@@ -46,6 +46,14 @@ class App extends Component {
     this.setState({ errorMessage: "Please supply a todo name" })
   }
 
+  handleRemove = (id, event) => {
+    event.preventDefault()
+
+    const updatedTodos = removeTodo(this.state.todos, id)
+
+    this.setState({todos: updatedTodos})
+  }
+
   render() {
 
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
@@ -67,7 +75,9 @@ class App extends Component {
           <TodoList
             todos={this.state.todos}
             handleToggle={ this.handleToggle }
-            handleOnchangeCheckbox={this.handleOnchangeCheckbox} />
+            handleOnchangeCheckbox={this.handleOnchangeCheckbox}
+            handleRemove = {this.handleRemove}
+          />
         </div>
       </div>
     );
